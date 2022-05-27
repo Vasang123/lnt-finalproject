@@ -21,7 +21,7 @@
                         <tr>
                             <td> <img src="{{asset('storage/images/'.$item->items->item_image)}}" class="img-fluid" alt="Item Image" style="width:200px "></td>
                             <td><h5>{{$item->items->item_name}}</h5></td>
-                            <td>Rp {{$item->items->item_price}}</td>
+                            <td>Rp {{number_format($item->items->item_price * $item->jumlah)}}</td>
                             <td>
                                 @if ($item->items->item_stock > $item->jumlah)
                                     <input type="hidden" value ="{{$item->kode_produk}}" class="prod_id">
@@ -39,7 +39,7 @@
                         @endphp
                     @endforeach
                     <tr>
-                    <td><h5 class="fw-bold mt-3">Total Price : Rp {{$total}}</h5></td>
+                    <td><h5 class="fw-bold mt-3">Total Price : Rp {{number_format($total)}}</h5></td>
                     <td></td>
                     <td></td>
                     <td></td>

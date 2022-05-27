@@ -27,14 +27,14 @@
                                     <tr>
                                         <td> {{$item->items->item_name}}</td>
                                         <td> {{$item->jumlah}}</td>
-                                        <td> Rp {{$item->items->item_price}}</td>
+                                        <td> Rp {{number_format($item->items->item_price * $item->jumlah)}}</td>
                                     </tr>
                                     @php
                                         $total += $item->items->item_price * $item->jumlah;
                                     @endphp
                                     @endforeach
                                     <tr>
-                                        <td class="fw-bold">Total Price : Rp {{$total}}</td>
+                                        <td class="fw-bold">Total Price : Rp {{number_format($total)}}</td>
                                         <td></td>
                                         <td></td>
                                      </tr>
@@ -51,12 +51,22 @@
                             <hr>
                             <div class="row">
                                 <div class="cold-md-8">
-                                    <label for="fist">Address</label>
-                                    <input type="text" class="form-control " id="address" name="address1">
+                                    <label for="address1">Address</label>
+                                    <input type="text" class="form-control  @error('address1') is-invalid @enderror" id="address1" name="address1"  name="address1" value="{{ old('address1') }}" required autocomplete="address1" autofocus>
+                                    @error('address1')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="cold-md-8 mt-2">
-                                    <label for="fist">Kode Pos</label>
-                                    <input type="text" class="form-control " id="kode_pos" name="kode_pos1">
+                                    <label for="kode_pos1">Kode Pos</label>
+                                    <input type="text" class="form-control @error('kode_pos1') is-invalid @enderror" id="kode_pos1" name="kode_pos1"   name="kode_pos1" value="{{ old('kode_pos1') }}" autocomplete="kode_pos1" autofocus required>
+                                    @error('kode_pos1')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary third-color mt-4"> Place Order</button>

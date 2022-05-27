@@ -16,7 +16,7 @@
                         @foreach ($orders as $order)
                         <tr>
                             <td>IV-{{$order->random_code}}</td>
-                            <td>Rp {{$order->total_price}}</td>
+                            <td>Rp {{number_format($order->total_price)}}</td>
                             <td>
                                 @if ($order->status == 0)
                                     <span class="badge bg-warning">Pending</span>

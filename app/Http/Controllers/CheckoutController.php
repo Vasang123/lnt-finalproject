@@ -17,6 +17,10 @@ class CheckoutController extends Controller
         return view('checkout\index',compact('cartitems'));
     }
     public function create(Request $request){
+        $validateData = $request->validate([
+            'kode_pos1' => 'required|digits:5|integer',
+            'address1' => 'required|min:10|max:100',
+        ]);
         $order = new Order();
         $order->kode_user = Auth::user()->kode_user;
         $order->kode_pos = $request->input('kode_pos1');
@@ -45,7 +49,7 @@ class CheckoutController extends Controller
         }
         $cartitems = Cart::where('kode_user', Auth::user()->kode_user)->get();
         Cart::destroy($cartitems);
-        return redirect('/home')->with('status','Pesanan anda berhasil ditambahkan');
+        return redirect('/home')->with('status','Pesanan anda berhasil dibuat');
     }
 
     public function invoice(Request $request){

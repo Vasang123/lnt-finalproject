@@ -26,7 +26,7 @@
                         <tr>
                             <td>IV-{{$order->random_code}}</td>
                             <td>{{$order->address}}</td>
-                            <td>Rp {{$order->total_price}}</td>
+                            <td>Rp {{number_format($order->total_price)}}</td>
                             <td>
                                 @if ($order->status == 0)
                                     <span class="badge bg-warning">Pending</span>
@@ -53,6 +53,13 @@
                                         </div>
                                     </div>
                                 </form>
+                                @else
+                                    <div class="col-md-3 " style="visibility: hidden">
+                                        <select name="proses" class="p-2 form-select" >
+                                            <option {{$order->status == '1' ? "selected" : ''}} value = "1"  >Accept</option>
+                                            <option {{$order->status == '2' ? "selected" : ''}} value = "2"  >Reject</option>
+                                        </select>
+                                    </div>
                                 @endif
                             </td>
                         </tr>
